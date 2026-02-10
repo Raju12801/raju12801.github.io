@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raju Kumar Paswan | Portfolio</title>
+  <title>Raju Kumar Paswan | Full Stack & AI/ML Developer</title>
+  <meta name="description" content="Portfolio of Raju Kumar Paswan - AIML Trainee, Full Stack Developer, and App Developer specializing in React, Kotlin, and AI/ML technologies.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script>
     tailwind.config = {
       theme: {
@@ -12,61 +14,412 @@
           colors: {
             primary: '#6366F1',
             secondary: '#22D3EE',
-            dark: '#0F172A'
+            dark: '#0F172A',
+            'dark-light': '#1E293B'
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.6s ease-out',
+            'fade-in': 'fadeIn 0.6s ease-out',
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            }
           }
         }
       }
     }
   </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #6366F1 0%, #22D3EE 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .glass {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+    }
+    
+    .skill-card {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+      transition: left 0.5s;
+    }
+    
+    .skill-card:hover::before {
+      left: 100%;
+    }
+
+    /* Particle background */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(99, 102, 241, 0.5);
+      border-radius: 50%;
+      animation: float-particle 15s infinite;
+    }
+    
+    @keyframes float-particle {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    section {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-dark text-gray-200 font-sans">
+<body class="bg-dark text-gray-200 font-sans antialiased">
 
   <!-- Navbar -->
-  <nav class="fixed w-full bg-dark/80 backdrop-blur border-b border-gray-700 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-primary">Raju.dev</h1>
-      <ul class="hidden md:flex space-x-8">
-        <li><a href="#home" class="hover:text-secondary">Home</a></li>
-        <li><a href="#about" class="hover:text-secondary">About</a></li>
-        <li><a href="#skills" class="hover:text-secondary">Skills</a></li>
-        <li><a href="#projects" class="hover:text-secondary">Projects</a></li>
-        <li><a href="#contact" class="hover:text-secondary">Contact</a></li>
-      </ul>
+  <nav class="fixed w-full glass z-50 border-b border-gray-700/50">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold gradient-text">Raju.dev</h1>
+        
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex space-x-8">
+          <li><a href="#home" class="hover:text-secondary transition">Home</a></li>
+          <li><a href="#about" class="hover:text-secondary transition">About</a></li>
+          <li><a href="#skills" class="hover:text-secondary transition">Skills</a></li>
+          <li><a href="#projects" class="hover:text-secondary transition">Projects</a></li>
+          <li><a href="#contact" class="hover:text-secondary transition">Contact</a></li>
+        </ul>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-dark-light z-50 md:hidden shadow-2xl">
+    <div class="flex justify-end p-6">
+      <button id="close-menu-btn" class="text-2xl focus:outline-none">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="flex flex-col space-y-6 px-6">
+      <li><a href="#home" class="mobile-link text-lg hover:text-secondary transition block">Home</a></li>
+      <li><a href="#about" class="mobile-link text-lg hover:text-secondary transition block">About</a></li>
+      <li><a href="#skills" class="mobile-link text-lg hover:text-secondary transition block">Skills</a></li>
+      <li><a href="#projects" class="mobile-link text-lg hover:text-secondary transition block">Projects</a></li>
+      <li><a href="#contact" class="mobile-link text-lg hover:text-secondary transition block">Contact</a></li>
+    </ul>
+  </div>
+
   <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center justify-center text-center px-6">
-    <div class="mt-20">
-      <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Hi, I'm <span class="text-primary">Raju</span> 👋</h2>
-      <p class="text-lg md:text-xl text-gray-400 mb-6">AIML Trainee • App Developer • Full Stack Developer</p>
-      <a href="#projects" class="px-8 py-3 bg-primary hover:bg-secondary transition rounded-full text-white font-semibold">View My Work</a>
+  <section id="home" class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+    <!-- Particles Background -->
+    <div class="particles">
+      <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+      <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+      <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+      <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+      <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+      <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+      <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+      <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+    </div>
+
+    <div class="mt-20 relative z-10">
+      <!-- Avatar -->
+      <div class="mb-8 inline-block">
+        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary to-secondary p-1 animate-pulse-slow">
+          <div class="w-full h-full rounded-full bg-dark flex items-center justify-center text-6xl">
+            👨‍💻
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-4 animate-fade-in-up">
+        Hi, I'm <span class="gradient-text">Raju Kumar Paswan</span> 👋
+      </h2>
+      <p class="text-xl md:text-2xl text-gray-400 mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <span class="inline-block">AIML Trainee</span>
+        <span class="text-primary mx-2">•</span>
+        <span class="inline-block">App Developer</span>
+        <span class="text-primary mx-2">•</span>
+        <span class="inline-block">Full Stack Developer</span>
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+        <a href="#projects" class="px-8 py-4 bg-primary hover:bg-secondary transition rounded-full text-white font-semibold shadow-lg hover:shadow-2xl">
+          <i class="fas fa-briefcase mr-2"></i>View My Work
+        </a>
+        <a href="#contact" class="px-8 py-4 border-2 border-primary hover:bg-primary transition rounded-full text-white font-semibold">
+          <i class="fas fa-envelope mr-2"></i>Get In Touch
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="mt-12 flex gap-6 justify-center animate-fade-in-up" style="animation-delay: 0.6s;">
+        <a href="https://github.com/yourusername" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary transition text-xl">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary transition text-xl">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:rajuraz12801@gmail.com" class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary transition text-xl">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary transition text-xl">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#about">
+          <i class="fas fa-chevron-down text-3xl text-gray-500"></i>
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-20 bg-slate-900">
+  <section id="about" class="py-20 bg-slate-900 relative">
     <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-6 text-primary">About Me</h3>
-      <p class="text-gray-400 leading-relaxed">
-        I am an AIML Trainee at NIELIT Chandigarh (Ropar Campus) with strong experience in Android, Full Stack Web Development, and AI-based applications. I love building clean, scalable, and user-friendly products.
-      </p>
+      <div class="text-center mb-12">
+        <h3 class="text-4xl md:text-5xl font-bold mb-4">
+          About <span class="gradient-text">Me</span>
+        </h3>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <p class="text-gray-400 leading-relaxed text-lg">
+            I am an <strong class="text-white">AIML Trainee at NIELIT Chandigarh (Ropar Campus)</strong> with a passion for creating innovative solutions that bridge technology and user experience.
+          </p>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            With expertise in <strong class="text-white">Android Development, Full Stack Web Development, and AI/ML</strong>, I specialize in building clean, scalable, and user-friendly applications that solve real-world problems.
+          </p>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            My journey in tech has been driven by curiosity and a commitment to continuous learning. I thrive on challenges and believe in the power of technology to transform lives.
+          </p>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-6 pt-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text mb-2">15+</div>
+              <div class="text-gray-400 text-sm">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text mb-2">8+</div>
+              <div class="text-gray-400 text-sm">Technologies</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text mb-2">100%</div>
+              <div class="text-gray-400 text-sm">Dedication</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="glass p-8 rounded-2xl">
+            <h4 class="text-2xl font-bold mb-6 text-primary">
+              <i class="fas fa-graduation-cap mr-2"></i>Education & Training
+            </h4>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-code text-primary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-white">AIML Training</h5>
+                  <p class="text-gray-400 text-sm">NIELIT Chandigarh - Ropar Campus</p>
+                  <p class="text-gray-500 text-xs mt-1">Present</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-laptop-code text-secondary"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-white">Full Stack Development</h5>
+                  <p class="text-gray-400 text-sm">Self-taught & Project-based</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="py-20">
+  <section id="skills" class="py-20 relative overflow-hidden">
     <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-10 text-primary">Skills</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="p-6 bg-slate-800 rounded-xl text-center">Kotlin</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">JavaScript</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">React</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">Firebase</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">PHP & MySQL</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">AI / ML</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">REST APIs</div>
-        <div class="p-6 bg-slate-800 rounded-xl text-center">Git & GitHub</div>
+      <div class="text-center mb-16">
+        <h3 class="text-4xl md:text-5xl font-bold mb-4">
+          Technical <span class="gradient-text">Skills</span>
+        </h3>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-4"></div>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          A comprehensive toolkit spanning mobile, web, and AI/ML technologies
+        </p>
+      </div>
+
+      <!-- Skills Categories -->
+      <div class="space-y-12">
+        <!-- Frontend -->
+        <div>
+          <h4 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="fas fa-palette text-primary mr-3"></i>
+            Frontend Development
+          </h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-react text-4xl mb-3 text-cyan-400"></i>
+              <div class="font-semibold">React</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-js text-4xl mb-3 text-yellow-400"></i>
+              <div class="font-semibold">JavaScript</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-html5 text-4xl mb-3 text-orange-400"></i>
+              <div class="font-semibold">HTML5</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-css3-alt text-4xl mb-3 text-blue-400"></i>
+              <div class="font-semibold">CSS3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend & Mobile -->
+        <div>
+          <h4 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="fas fa-server text-secondary mr-3"></i>
+            Backend & Mobile
+          </h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-android text-4xl mb-3 text-green-400"></i>
+              <div class="font-semibold">Kotlin</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-php text-4xl mb-3 text-indigo-400"></i>
+              <div class="font-semibold">PHP</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fas fa-database text-4xl mb-3 text-blue-400"></i>
+              <div class="font-semibold">MySQL</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fas fa-fire text-4xl mb-3 text-orange-400"></i>
+              <div class="font-semibold">Firebase</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI/ML & Tools -->
+        <div>
+          <h4 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="fas fa-brain text-primary mr-3"></i>
+            AI/ML & Tools
+          </h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fas fa-robot text-4xl mb-3 text-purple-400"></i>
+              <div class="font-semibold">AI / ML</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fas fa-project-diagram text-4xl mb-3 text-green-400"></i>
+              <div class="font-semibold">REST APIs</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-git-alt text-4xl mb-3 text-red-400"></i>
+              <div class="font-semibold">Git</div>
+            </div>
+            <div class="skill-card p-6 bg-slate-800 rounded-xl text-center card-hover">
+              <i class="fab fa-github text-4xl mb-3 text-gray-400"></i>
+              <div class="font-semibold">GitHub</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -74,37 +427,265 @@
   <!-- Projects -->
   <section id="projects" class="py-20 bg-slate-900">
     <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-10 text-primary">Projects</h3>
+      <div class="text-center mb-16">
+        <h3 class="text-4xl md:text-5xl font-bold mb-4">
+          Featured <span class="gradient-text">Projects</span>
+        </h3>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-4"></div>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Showcasing my best work in mobile apps, web development, and AI/ML applications
+        </p>
+      </div>
+
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-slate-800 p-6 rounded-xl hover:scale-105 transition">
-          <h4 class="text-xl font-semibold mb-2">MindNest App</h4>
-          <p class="text-gray-400 text-sm">Mental wellness Android app with AI chatbot, mood tracking, and Firebase backend.</p>
+        <!-- Project 1 -->
+        <div class="glass p-6 rounded-2xl card-hover group">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+            <i class="fas fa-brain text-2xl"></i>
+          </div>
+          <h4 class="text-2xl font-semibold mb-3 group-hover:text-primary transition">MindNest App</h4>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Mental wellness Android app featuring AI-powered chatbot for emotional support, mood tracking analytics, and secure Firebase backend integration.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs">Kotlin</span>
+            <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs">Firebase</span>
+            <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs">AI/ML</span>
+          </div>
+          <div class="flex gap-4">
+            <a href="#" class="text-secondary hover:text-primary transition">
+              <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+            </a>
+            <a href="#" class="text-secondary hover:text-primary transition">
+              <i class="fab fa-github mr-1"></i>Code
+            </a>
+          </div>
         </div>
-        <div class="bg-slate-800 p-6 rounded-xl hover:scale-105 transition">
-          <h4 class="text-xl font-semibold mb-2">Hotel Management System</h4>
-          <p class="text-gray-400 text-sm">Full-stack web app for hotel booking, billing, and admin management.</p>
+
+        <!-- Project 2 -->
+        <div class="glass p-6 rounded-2xl card-hover group">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+            <i class="fas fa-hotel text-2xl"></i>
+          </div>
+          <h4 class="text-2xl font-semibold mb-3 group-hover:text-secondary transition">Hotel Management System</h4>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Comprehensive full-stack web application for hotel booking, automated billing, inventory management, and admin dashboard with real-time analytics.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-xs">PHP</span>
+            <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-xs">MySQL</span>
+            <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-xs">JavaScript</span>
+          </div>
+          <div class="flex gap-4">
+            <a href="#" class="text-secondary hover:text-primary transition">
+              <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+            </a>
+            <a href="#" class="text-secondary hover:text-primary transition">
+              <i class="fab fa-github mr-1"></i>Code
+            </a>
+          </div>
         </div>
-        <div class="bg-slate-800 p-6 rounded-xl hover:scale-105 transition">
-          <h4 class="text-xl font-semibold mb-2">E-Learning Platform</h4>
-          <p class="text-gray-400 text-sm">Online coding education platform with courses, quizzes, and dashboards.</p>
+
+        <!-- Project 3 -->
+        <div class="glass p-6 rounded-2xl card-hover group">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+            <i class="fas fa-graduation-cap text-2xl"></i>
+          </div>
+          <h4 class="text-2xl font-semibold mb-3 group-hover:text-green-400 transition">E-Learning Platform</h4>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Interactive online coding education platform with video courses, live quizzes, progress tracking dashboards, and certificate generation system.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">React</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Node.js</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">MongoDB</span>
+          </div>
+          <div class="flex gap-4">
+            <a href="#" class="text-secondary hover:text-primary transition">
+              <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+            </a>
+            <a href="#" class="text-secondary hover:text-primary transition">
+              <i class="fab fa-github mr-1"></i>Code
+            </a>
+          </div>
         </div>
+      </div>
+
+      <!-- View More Button -->
+      <div class="text-center mt-12">
+        <a href="https://github.com/yourusername" target="_blank" class="inline-flex items-center px-8 py-4 border-2 border-primary hover:bg-primary transition rounded-full text-white font-semibold">
+          <i class="fab fa-github mr-2"></i>
+          View All Projects on GitHub
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-20">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold mb-6 text-primary">Let's Connect</h3>
-      <p class="text-gray-400 mb-6">Have an idea or want to collaborate? Let's talk!</p>
-      <a href="mailto:rajuraz12801@gmail.com" class="px-8 py-3 bg-primary hover:bg-secondary transition rounded-full text-white font-semibold">Email Me</a>
+  <section id="contact" class="py-20 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h3 class="text-4xl md:text-5xl font-bold mb-4">
+          Let's <span class="gradient-text">Connect</span>
+        </h3>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-4"></div>
+        <p class="text-gray-400 text-lg">
+          Have a project in mind or want to collaborate? I'd love to hear from you!
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="glass p-6 rounded-2xl text-center card-hover">
+          <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-envelope text-2xl text-primary"></i>
+          </div>
+          <h4 class="font-semibold mb-2">Email</h4>
+          <a href="mailto:rajuraz12801@gmail.com" class="text-gray-400 hover:text-secondary transition text-sm">
+            rajuraz12801@gmail.com
+          </a>
+        </div>
+
+        <div class="glass p-6 rounded-2xl text-center card-hover">
+          <div class="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-4">
+            <i class="fab fa-linkedin text-2xl text-secondary"></i>
+          </div>
+          <h4 class="font-semibold mb-2">LinkedIn</h4>
+          <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-secondary transition text-sm">
+            Connect with me
+          </a>
+        </div>
+
+        <div class="glass p-6 rounded-2xl text-center card-hover">
+          <div class="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
+            <i class="fab fa-github text-2xl text-purple-400"></i>
+          </div>
+          <h4 class="font-semibold mb-2">GitHub</h4>
+          <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-secondary transition text-sm">
+            Follow my work
+          </a>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="mailto:rajuraz12801@gmail.com" class="inline-flex items-center px-10 py-5 bg-gradient-to-r from-primary to-secondary hover:shadow-2xl transition rounded-full text-white font-semibold text-lg">
+          <i class="fas fa-paper-plane mr-3"></i>
+          Send Me a Message
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-6 text-center text-gray-500 bg-slate-900">
-    © 2026 Raju Kumar Paswan. Built with ❤️ & Tailwind CSS.
+  <footer class="py-8 text-center bg-slate-900 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex justify-center gap-6 mb-6">
+        <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-primary transition">
+          <i class="fab fa-github text-2xl"></i>
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-primary transition">
+          <i class="fab fa-linkedin text-2xl"></i>
+        </a>
+        <a href="mailto:rajuraz12801@gmail.com" class="text-gray-400 hover:text-primary transition">
+          <i class="fas fa-envelope text-2xl"></i>
+        </a>
+        <a href="#" target="_blank" class="text-gray-400 hover:text-primary transition">
+          <i class="fab fa-twitter text-2xl"></i>
+        </a>
+      </div>
+      <p class="text-gray-500">
+        © 2026 Raju Kumar Paswan. Crafted with <i class="fas fa-heart text-red-500"></i> and <span class="text-secondary">Tailwind CSS</span>
+      </p>
+      <p class="text-gray-600 text-sm mt-2">
+        Designed & Developed with passion for innovation
+      </p>
+    </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary hover:bg-secondary transition rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none z-40">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.style.opacity = '1';
+        backToTopBtn.style.pointerEvents = 'auto';
+      } else {
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.pointerEvents = 'none';
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Active Navigation Link
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('text-primary');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('text-primary');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
