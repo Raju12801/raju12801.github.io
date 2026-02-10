@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raju Kumar Paswan | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366F1',
+            secondary: '#22D3EE',
+            dark: '#0F172A'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-dark text-gray-200 font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-dark/80 backdrop-blur border-b border-gray-700 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-primary">Raju.dev</h1>
+      <ul class="hidden md:flex space-x-8">
+        <li><a href="#home" class="hover:text-secondary">Home</a></li>
+        <li><a href="#about" class="hover:text-secondary">About</a></li>
+        <li><a href="#skills" class="hover:text-secondary">Skills</a></li>
+        <li><a href="#projects" class="hover:text-secondary">Projects</a></li>
+        <li><a href="#contact" class="hover:text-secondary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center text-center px-6">
+    <div class="mt-20">
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Hi, I'm <span class="text-primary">Raju</span> 👋</h2>
+      <p class="text-lg md:text-xl text-gray-400 mb-6">AIML Trainee • App Developer • Full Stack Developer</p>
+      <a href="#projects" class="px-8 py-3 bg-primary hover:bg-secondary transition rounded-full text-white font-semibold">View My Work</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-6 text-primary">About Me</h3>
+      <p class="text-gray-400 leading-relaxed">
+        I am an AIML Trainee at NIELIT Chandigarh (Ropar Campus) with strong experience in Android, Full Stack Web Development, and AI-based applications. I love building clean, scalable, and user-friendly products.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-10 text-primary">Skills</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="p-6 bg-slate-800 rounded-xl text-center">Kotlin</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">JavaScript</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">React</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">Firebase</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">PHP & MySQL</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">AI / ML</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">REST APIs</div>
+        <div class="p-6 bg-slate-800 rounded-xl text-center">Git & GitHub</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-10 text-primary">Projects</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-800 p-6 rounded-xl hover:scale-105 transition">
+          <h4 class="text-xl font-semibold mb-2">MindNest App</h4>
+          <p class="text-gray-400 text-sm">Mental wellness Android app with AI chatbot, mood tracking, and Firebase backend.</p>
+        </div>
+        <div class="bg-slate-800 p-6 rounded-xl hover:scale-105 transition">
+          <h4 class="text-xl font-semibold mb-2">Hotel Management System</h4>
+          <p class="text-gray-400 text-sm">Full-stack web app for hotel booking, billing, and admin management.</p>
+        </div>
+        <div class="bg-slate-800 p-6 rounded-xl hover:scale-105 transition">
+          <h4 class="text-xl font-semibold mb-2">E-Learning Platform</h4>
+          <p class="text-gray-400 text-sm">Online coding education platform with courses, quizzes, and dashboards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-6 text-primary">Let's Connect</h3>
+      <p class="text-gray-400 mb-6">Have an idea or want to collaborate? Let's talk!</p>
+      <a href="mailto:rajuraz12801@gmail.com" class="px-8 py-3 bg-primary hover:bg-secondary transition rounded-full text-white font-semibold">Email Me</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-500 bg-slate-900">
+    © 2026 Raju Kumar Paswan. Built with ❤️ & Tailwind CSS.
+  </footer>
+
+</body>
+</html>
